@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: 'Website',
-    description: 'Website description',
-    author: '@example',
-    siteUrl: 'https://example.com',
-    image: 'https://example.com/example.png',
+    title: 'Gres2Air',
+    description: 'Google Results to Airtable',
+    author: '@julee',
+    siteUrl: 'https://google.com',
+    image: 'https://source.unsplash.com/random/400x200',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

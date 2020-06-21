@@ -1,8 +1,8 @@
 {
-  "name": "gp-gatsby-starter-ts-sass-jest",
-  "description": "GP Gatsby Starter",
+  "name": "Gres2Air",
+  "description": "Google Results to Airtable",
   "version": "0.0.1",
-  "author": "GP",
+  "author": "@julee",
   "dependencies": {
     "@babel/helper-compilation-targets": "^7.10.2",
     "@types/jest": "^26.0.0",
