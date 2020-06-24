@@ -7,7 +7,13 @@
     "target": "esnext",
     "jsx": "react",
     "lib": ["dom", "esnext"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths":{
+      "styles/*": ["src/styles/*"],
+      "types": ["src/types", "cypress", "@types/testing-library__cypress"],
+      "graphql-types": ["src/types/graphql-types.d.ts"],
+      "components/*": ["src/components/*"],
+    }
   },
   "include": ["./src/**/*"]
 }

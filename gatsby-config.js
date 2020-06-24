@@ -35,5 +35,17 @@ module.exports = {
     },
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-typescript',
+    {
+      resolve: 'gatsby-source-airtable',
+      options: {
+        apiKey: 'keyGossVeFU9uJben',
+        tables: [
+          {
+            baseId: 'app56znB40HogXVeJ',
+            tableName: 'Orgs',
+          },
+        ],
+      },
+    },
   ],
 };
