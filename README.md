@@ -51,9 +51,171 @@ You can build the website by running:
 
 Airtable
 ========
+
+Add airtable dependency
+-----------------------
+
+Add to package.json for airtable:
 ```
+"gatsby-source-airtable": "^2.1.1",
+```
+
+(If we didn't already have a project, create new project based on airtable...
+```
+>> gatsby new g-res-to-airtable https://github.com/GoodPraxis/gp-gatsby-starter-ts-sass-jest
+>> cd g-res-to-airtable
+>> gatsby develop
+```
+)
+
+Add airtable API
+----------------
 >> yarn add gatsby-source-airtable --save
+
+Add airtable to Gatsby config
+-----------------------------
+
+Config gatsby-config.js with airtable under plugins:
+
 ```
+{
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: `keyGossVeFU9uJben`,
+        tables: [
+          {
+            baseId: `app56znB40HogXVeJ`,
+            tableName: `Orgs`
+          },
+          // We can add other databases/tables here, too!
+          //{
+            //baseId: `AIRTABLE_BASE_ID`,
+            //tableName: `table_name`
+          //}
+        ]
+      }
+    },
+```
+Run the project
+---------------
+```
+>> gatsy develop
+``` 
+
+Get the GraphQL schema
+----------------------
+
+Go to http://localhost:8000/___graphql
+
+Click on allAirtable > edges > and click on fields you want to build a query. e.g.:
+
+```
+query MyQuery {
+  allAirtable {
+    nodes {
+      data {
+        Name
+        Company_logo {
+          filename
+          thumbnails {
+            small {
+              width
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Add typescript types
+--------------------
+
+Add graphql types to new file types > graphql-types.d.ts
+```
+export type Maybe<T> = T | null;
+/** All built-in and custom scalars, mapped to their actual values */
+export type Scalars = {
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  /**
+   * A date string, such as 2007-12-03, compliant with the ISO 8601 standard for
+   * representation of dates and times using the Gregorian calendar.
+   */
+  Date: any;
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+  JSON: any;
+};
+```
+
+Render the results
+------------------
+
+Place the nodes>data>.... into a constant for the logo page and render it:
+
+```
+import React from 'react';
+import { graphql } from 'gatsby';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
+
+// eslint-disable-next-line react/prop-types
+export default ({data}) => {
+  const allAirtableData = data.allAirtable.nodes;
+  return (
+    <Layout>
+      <SEO title="Organization Logo" />
+      <h1>Organization Logo</h1>
+      <div style={{ color: `purple` }}>
+        <h1>Get Organization Logos</h1>
+        <p>Get a list of organizations from Airtable</p>
+        <img src="https://source.unsplash.com/random/400x200" alt="" />
+      </div>
+      <ul>
+        {
+          // eslint-disable-next-line react/prop-types
+          allAirtableData.map((nodes: { data:
+                                        { Name: string;
+                                          Company_logo: { url: string; };
+                                        };
+                                      }) => (
+            <li>
+              {nodes.data.Name}
+            </li>
+          ))
+        }
+    </ul>
+    </Layout>
+  );
+};
+
+export const query = graphql`
+    query {
+        allAirtable {
+            nodes {
+           recordId
+            data {
+              Name
+               Company_logo {
+                 filename
+                 url
+                 thumbnails {
+                   small {
+                     width
+                   }
+                 }
+               }
+            }
+            }
+        }
+    }
+`;
+```
+
 Google Custom Search
 ====================
 
