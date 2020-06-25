@@ -8,6 +8,13 @@
     "jsx": "react",
     "lib": ["dom", "esnext"],
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
+    "baseUrl": ".", // This must be specified if "paths" is.
     "paths":{
       "styles/*": ["src/styles/*"],
       "types": ["src/types", "cypress", "@types/testing-library__cypress"],
