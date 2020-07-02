@@ -38,10 +38,10 @@ module.exports = {
     {
       resolve: 'gatsby-source-airtable',
       options: {
-        apiKey: 'keyGossVeFU9uJben',
+        apiKey: 'YOUR_AIRTABLE_KEY',
         tables: [
           {
-            baseId: 'app56znB40HogXVeJ',
+            baseId: 'YOUR_AIRTABLE_BASE_ID',
             tableName: 'Orgs',
           },
         ],
